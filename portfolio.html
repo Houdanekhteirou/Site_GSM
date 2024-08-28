@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>GSM</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <!-- translate file -->
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+        var translations;
+    
+        // Load the JSON file with translations
+        $.getJSON('translations.json', function (data) {
+            translations = data;
+    
+            // Set default language to French (fr)
+            var defaultLang = 'fr';
+            $('#lang-select').val(defaultLang); // Set the value of the hidden <select> to 'fr'
+            updateLanguage(defaultLang);
+        });
+    
+        // Function to update the text based on the selected language
+        function updateLanguage(lang) {
+            $('.lang').each(function () {
+                var key = $(this).data('key');
+                var elementType = $(this).prop('tagName').toLowerCase();
+    
+                if (elementType === 'input' || elementType === 'textarea') {
+                    // Update placeholders for input and textarea elements
+                    $(this).attr('placeholder', translations[lang][key]);
+                } else {
+                    // Update text for other elements
+                    $(this).text(translations[lang][key]);
+                }
+            });
+    
+            // Change text direction based on language
+            if (lang === 'ar') {
+                $('body').css('direction', 'rtl');
+            } else {
+                $('body').css('direction', 'ltr');
+            }
+        }
+    
+        // Detect language change from the custom dropdown
+        $('.ct-toggle-dropdown-desktop-ghost').click(function () {
+            $('.dropdown-menu').toggle();
+        });
+    
+        $('.dropdown-menu a').click(function (e) {
+            e.preventDefault();
+            var lang = $(this).data('value');
+            $('#selected-lang').text($(this).text());
+            $('#lang-select').val(lang).change(); // Trigger change event on hidden select
+            updateLanguage(lang);
+            $('.dropdown-menu').hide(); // Hide the dropdown menu after selection
+        });
+    
+        // Hide the dropdown menu if clicked outside
+        $(document).click(function (e) {
+            if (!$(e.target).closest('.lang-dropdown').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+    });
+    </script>
+    <style>
+      .lang-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .ct-toggle-dropdown-desktop-ghost {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .ct-toggle-dropdown-desktop-ghost::after {
+    content: '\25BC'; /* Down arrow */
+    margin-left: 5px;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-menu li {
+    padding: 10px;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+  }
+  
+  .dropdown-menu li a:hover {
+    background: #f1f1f1;
+  }
+  
+  .hidden-select {
+    display: none;
+  }
+  
+    </style>
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logoGSM.png" alt="" />
+            <span>
+             
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-2">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">À propos </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Portfolio </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Services</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <div class="user_option">
+              <!-- <div class="login_btn-container">
+                <a href="">
+                  Login
+                </a>
+              </div> -->
+              <form class="form-inline my-2 my-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </div>
+          <!-- <div class="call_btn">
+            <a href="">
+              Call: +01234567890
+            </a>
+          </div> -->
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+
+  </div>
+
+  <!-- custom menu -->
+  <div class="custom_menu-container">
+    <div class="container">
+      <div class="custom_menu">
+        <ul class="navbar-nav ">
+          <li class="nav-item active">
+            <a class="nav-link pl-0 lang" data-key="Home" href="index.html">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link lang" href="about.html" data-key="About">À propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link lang" data-key="Portfolio"  href="portfolio.html">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link lang" data-key="Services" href="service.html">Services</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link lang" data-key="Contact Us" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="user_option">
+          <!-- <div class="login_btn-container">
+            <a href="">
+              Login
+            </a>
+          </div> -->
+           <!-- Dropdown for language selection -->
+           <!-- <select id="lang-select"  class="form-control" >
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ar">العربية</option>
+          </select> -->
+          <div class="lang-dropdown">
+            <button class="ct-toggle-dropdown-desktop-ghost" aria-label="Expand dropdown menu" aria-haspopup="true" aria-expanded="false">
+              <span id="selected-lang">Français</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" data-value="en">English</a></li>
+              <li><a href="#" data-value="fr">Français</a></li>
+              <li><a href="#" data-value="ar">العربية</a></li>
+            </ul>
+            <select id="lang-select" class="hidden-select">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+          </div>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+          </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- custom menu -->
+
+
+
+  <!-- portfolio section -->
+  <section class="portfolio_section layout_padding">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2  class="lang" data-key="trust_title">
+          Il nous font confiance 
+        </h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="box b-1">
+                <img src="images/cnam.png" alt="" />
+                <h4>
+                  
+                </h4>
+              </div>
+              <div class="box b-2">
+                <img src="images/logo-edufr.png" alt="" />
+                <h4>
+                  
+                </h4>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="box b-3">
+                <img src="images/petrole.jpg" alt="" />
+                <h4>
+                  
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="box b-4">
+                <img src="images/santeMini.png" alt="" />
+                <h4>
+                 
+                </h4>
+              </div>
+              <div class="box b-5">
+                <img src="images/" alt="" />
+                <h4>
+                  
+                </h4>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="box b-6">
+                <img src="images/inay.png" alt="" />
+                <h4>
+                  
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end portfolio section -->
+
+
+
+  <!-- info section -->
+  <section class="info_section layout_padding-top layout_padding2-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="info_links pl-lg-5">
+            <h4 class="lang" data-key="info_menu_title">
+              Menu
+            </h4>
+            <ul>
+              <li>
+                <a href="index.html" class="lang" data-key="info_menu_home">
+                  Accueil
+                </a>
+              </li>
+              <li class="active">
+                <a href="about.html" class="lang" data-key="info_menu_about">
+                  À propos
+                </a>
+              </li>
+              <li>
+                <a class="lang" href="portfolio.html" data-key="info_menu_portfolio">Portfolio </a>
+              </li>
+              <li>
+                <a class="lang" href="service.html" data-key="info_menu_services">Services</a>
+              </li>
+              <li>
+                <a href="contact.html" class="lang" data-key="info_menu_contact">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="info_contact">
+            <h4 class="lang" data-key="info_location_title">
+              Location
+            </h4>
+            <div>
+              <img src="images/location.png" alt="" />
+              <p class="lang" data-key="info_location_address">
+                P, 21 rue Ithman Ibn Afane Nouakchott - Mauritanie
+              </p>
+            </div>
+            <div>
+              <img src="images/telephone.png" alt="" />
+              <p class="lang" data-key="info_location_phone">
+                ( +222 22 03 76 25 )
+              </p>
+            </div>
+            <div>
+              <img src="images/envelope.png" alt="" />
+              <p class="lang"  data-key="info_location_email">
+                groupeservice@yahoo.fr
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="info_social">
+            <h4 class="lang" data-key="info_social_title">
+              Social Link
+            </h4>
+            <div class="social_container">
+              <div>
+                <a href="">
+                  <img src="images/facebook-logo.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="images/twitter-logo.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="images/instagram.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="images/linkedin-sign.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="info_form">
+            <h4 class="lang" data-key="info_newsletter_title">
+              Newsletter
+            </h4>
+            <form action="#">
+              <input type="text" placeholder="" class="lang" data-key="info_newsletter_placeholder" />
+              <button type="submit" class="lang" data-key="info_newsletter_button">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      Copyright &copy; 2024 - GSM 
+      <!-- <a href="https://html.design/">Free Html Templates</a> -->
+    </p>
+  </footer>
+  <!-- footer section -->
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/circles.min.js"></script>
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>
